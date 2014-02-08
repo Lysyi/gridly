@@ -1,0 +1,344 @@
+//== 
+// Acid-Green SASS Switches
+//==
+$sass-silent-classes: false !default; // Set to 'true' to enable. Enabling SASS silent classes will require @extend to use.
+
+//==
+// Grid Variables
+//==
+
+//** Number of columns in the grid
+$grid-max-columns: 12 !default;
+
+//** Column padding & spacing
+$grid-page-gutter: 15px !default; // Left and right margins of page or container
+$grid-column-padding-right: 15px !default;
+$grid-column-padding-left: 15px !default;
+$grid-column-margin: 0 !default;
+
+//** Media queries breakpoints
+$grid-normal-column-name: "col" !default;
+$grid-xsmall-column-size: 480px !default;
+$grid-xsmall-column-name: "xsmall" !default;
+$grid-small-column-size: 768px !default;
+$grid-small-column-name: "small" !default;
+$grid-medium-column-size: 992px !default;
+$grid-medium-column-name: "medium" !default;
+$grid-large-column-size: 1200px !default;
+$grid-large-column-name: "large" !default;
+
+//** Sticky footer settings
+$sticky-footer-height: 150px !default;
+$sticky-footer-top-margin: 15px;
+
+
+
+
+
+//==
+// DO NOT EDIT BELOW THIS LINE
+//==
+$class-type: '';
+@if $sass-silent-classes == true {
+  $class-type: unquote("%");
+}
+@else if $sass-silent-classes == false {
+  $class-type: unquote(".");
+}
+
+// This makes the variables easier to call for coding while still maintaing easy readability for
+// human understanding.
+$silent: $sass-silent-classes;
+$columns: $grid-max-columns;
+$gutter: $grid-page-gutter;
+$col-pad-r: $grid-column-padding-right;
+$col-pad-l: $grid-column-padding-left;
+$col-mar: $grid-column-margin;
+$col: $grid-normal-column-name;
+$xs-size: $grid-xsmall-column-size;
+$col-xs: $grid-xsmall-column-name;
+$sm-size: $grid-small-column-size;
+$col-sm: $grid-small-column-name;
+$md-size: $grid-medium-column-size;
+$col-md: $grid-medium-column-name;
+$lg-size: $grid-large-column-size;
+$col-lg: $grid-large-column-name;
+$sf-height: $sticky-footer-height;
+$sf-t-mar: $sticky-footer-top-margin;
+
+//==
+// Helpers
+//==
+@mixin clearfix {
+    zoom:1;
+    &:before, &:after {
+        content: " ";
+        display: block;
+        height: 0;
+        overflow: hidden;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+//==
+// Grid Mixins
+//==
+
+// Determine column size.
+@function one-col($foo) {
+  @if $col-mar != 0 {
+    @return ((100% - ($col-mar * ($col-mar - 1))) / $columns);
+  }
+  @else {
+    @return 100% / $columns;
+  }
+}
+
+@function col-size($num) {
+  @return ((one-col(0) * $num) + ($col-mar * ($num - 1)));
+}
+
+// Create the row.
+@mixin make-row{
+  #{$class-type}row {
+    @if $gutter != 0 {
+      margin: 0 (-$gutter);
+    }
+    @else {
+      margin: 0;
+    }
+    *zoom: 1;
+    &:before, &:after {
+      display: table;
+      content: " ";
+    }
+    &:after {
+      clear: both;
+    }
+  }
+}
+
+// Column styles
+@mixin col-styles {
+  position: relative;
+  @if $col-mar != 0 {
+    margin-left: $col-mar;
+  }
+  @else {
+    margin: 0;
+  }
+  padding-left: ($col-pad-l);
+  padding-right: ($col-pad-r);
+}
+
+// Create the columns
+@mixin apply-col-styles {
+  $i: 1;
+  $list: "#{$class-type}#{$col}-#{$i}, #{$class-type}#{$col-xs}-#{$i}, #{$class-type}#{$col-sm}-#{$i}, #{$class-type}#{$col-md}-#{$i}, #{$class-type}#{$col-lg}-#{$i}";
+  @for $i from 2 through $columns {
+    $list: "#{$list}, #{$class-type}#{$col}-#{$i}, #{$class-type}#{$col-xs}-#{$i}, #{$class-type}#{$col-sm}-#{$i}, #{$class-type}#{$col-md}-#{$i}, #{$class-type}#{$col-lg}-#{$i}";
+  }
+  #{$list} {
+    @include col-styles;
+  }
+}
+
+@mixin make-col-offset ($name:''){
+  @if $name != '' {
+    @for $i from 1 through ($columns - 1) {
+      #{$class-type}#{$name}-offset-#{$i} {
+        margin-left: col-size($i);
+      }
+    }
+  }
+  @else if $name == '' {
+    @for $i from 1 through ($columns - 1) {
+      #{$class-type}offset-#{$i} {
+        margin-left: col-size($i);
+      }
+    }
+  }
+}
+
+@mixin make-push-pull($name:'') {
+  @if $name != "" {
+    $i: 1;
+    $list: "#{$class-type}#{$name}-pull-#{$i}";
+    @for $i from 2 through ($columns - 1) {
+      $list:"#{$list}, #{$class-type}#{$name}-pull-#{$i}";
+    }
+    #{$list} {
+      left:auto;
+    }
+    @for $i from 1 through ($columns - 1) {
+      #{$class-type}#{$name}-pull-#{$i} {
+        right: col-size($i);
+      }
+    }
+    $i: 1;
+    $list: "#{$class-type}#{$name}-push-#{$i}";
+    @for $i from 2 through ($columns - 1) {
+      $list: "#{$list}, #{$class-type}#{$name}-push-#{$i}";
+    }
+    #{$list} {
+      right: auto;
+    }
+    @for $i from 1 through ($columns - 1) {
+      #{$class-type}#{$name}-push-#{$i} {
+        left: col-size($i);
+      }
+    }
+  }
+  @else if $name == '' {
+    $i: 1;
+    $list: "#{$class-type}pull-#{$i}";
+    @for $i from 2 through ($columns - 1) {
+      $list:"#{$list}, #{$class-type}pull-#{$i}";
+    }
+    #{$list} {
+      left:auto;
+    }
+    @for $i from 1 through ($columns - 1) {
+      #{$class-type}pull-#{$i} {
+        right: col-size($i);
+      }
+    }
+    $i: 1;
+    $list: "#{$class-type}push-#{$i}";
+    @for $i from 2 through ($columns - 1) {
+      $list: "#{$list}, #{$class-type}push-#{$i}";
+    }
+    #{$list} {
+      right: auto;
+    }
+    @for $i from 1 through ($columns - 1) {
+      #{$class-type}push-#{$i} {
+        left: col-size($i);
+      }
+    }
+  }
+}
+
+@mixin make-col($name, $min-width: 0, $max-width: 0){
+  $i: 1;
+  $list: "#{$class-type}#{$name}-#{$i}";
+  @for $i from 2 through $columns {
+  $list: "#{$list}, #{$class-type}#{$name}-#{$i}";
+  }
+  #{$list} {
+    float:left;
+  }
+  @for $i from 1 through ($columns - 1) {
+    #{$class-type}#{$name}-#{$i} {
+      width: col-size($i);
+    }
+  }
+  #{$class-type}#{$name}-#{$columns} {
+    width: 100%;
+  }
+  @include make-col-offset($name);
+  @include make-push-pull($name);
+}
+
+@mixin make-breakpoints($name, $min: 0, $max: 0) {
+  @if $min != 0 and $max != 0 {
+    @media screen and (min-width: $min) and (max-width: $max) {
+      @include make-col($name)
+    }
+  }
+  @else if $min != 0 {
+    @media screen and (min-width: $min) {
+      @include make-col($name)
+    }
+  }
+  @else if $max != 0 {
+    @media screen and (max-width: $max) {
+      @include make-col($name)
+    }
+  }
+}
+
+@mixin make-grid {
+  @include apply-col-styles;
+  @include make-col($col);
+  @include make-col-offset;
+  @include make-push-pull;
+  @include make-breakpoints($col-xs, 0, $xs-size);
+  @include make-breakpoints($col-sm, ($xs-size + 1), ($sm-size));
+  @include make-breakpoints($col-md, ($sm-size + 1), ($md-size));
+  @include make-breakpoints($col-lg, ($md-size + 1));  
+}
+
+%clearfix {
+  @include clearfix;
+}
+
+%columns {
+  @include col-styles;
+}
+
+// Not including in sass-silent-styles because this reset is temporary
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  &:before, &:after {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+}
+
+div {
+ display: block;
+}
+
+//Sticky footer see http://mystrd.at/modern-clean-css-sticky-footer/
+html {
+  position: relative;
+  min-height: 100%;
+}
+  
+#{$class-type}sticky-footer {
+  margin-bottom: $sf-height;  
+ #{$class-type}container {
+    &:after {
+      display: block;
+      height: $sf-t-mar;
+    }
+  }
+}
+
+$var: '';
+@if $silent == false {
+  $var: 'footer,'
+}
+@else {
+  $var: ''
+}
+
+#{$var}
+#{$class-type}footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: $sf-height;
+  width: 100%;
+}
+$var: ''; // clean var for later use.
+
+#{$class-type}container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: $gutter;
+  margin-left: $gutter;
+  @extend %clearfix;
+}
+
+// Grid 
+@include make-row;
+@include make-grid;

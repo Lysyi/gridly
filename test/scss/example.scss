@@ -1,0 +1,43 @@
+$gridly-blue: rgba(41,171,226,1);
+$off-white: rgba(240,240,240,1);
+h1, h2 {
+  display:block;
+  margin: 7px 0;
+}
+
+header {
+	height: 300px;
+	margin-bottom: 15px;
+	padding: 25px 25px;
+	background: $gridly-blue;
+	border-bottom: 4px solid darken($gridly-blue, 10%);
+	color: white;
+	h1 {
+	  display: block;
+	  margin-top: 125px;
+	  text-shadow: 0 2px 0 darken($gridly-blue, 10%); 
+	}
+}
+
+.show-grid {
+  margin-bottom: 15px;
+  [class*='col-'] {
+    padding-top: 10px;
+	padding-bottom: 10px;
+	background: $off-white;
+	border: 1px solid black;
+	text-align: center;
+  }
+}
+
+footer,
+.footer {
+  background: black;
+  p {
+    text-align: center;
+	color: white;
+	font-size: 12px;
+	line-height: 150px;
+  }
+}
+
