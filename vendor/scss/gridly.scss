@@ -53,29 +53,38 @@ $class-type: '';
 // This makes the variables easier to call for coding while still maintaing easy readability for
 // human understanding.
 $silent: $sass-silent-classes;
-$naked: $css-naked-classes;
 $columns: $grid-max-columns;
 $gutter: $grid-page-gutter;
 $col-pad-r: $grid-column-padding-right;
 $col-pad-l: $grid-column-padding-left;
 $col-mar: $grid-column-margin;
+// Note: depreciating use $col-nm
 $col: $grid-normal-column-name;
+$col-nm: $grid-normal-column-name;
 // Note: depreciating use $xs-sz
 $xs-size: $grid-xsmall-column-size;
 $xs-sz: $grid-xsmall-column-size;
+// Note: depreciating use $col-xs-nm
 $col-xs: $grid-xsmall-column-name;
+$col-xs-nm: $grid-xsmall-column-name;
 // Note: depreciating use $sm-sz
 $sm-size: $grid-small-column-size;
 $sm-sz: $grid-small-column-size;
+// Note: depreciating use $col-sm-nm
 $col-sm: $grid-small-column-name;
+$col-sm-nm: $grid-small-column-name;
 // Note: depreciating use $md-sz
 $md-size: $grid-medium-column-size;
 $md-sz: $grid-medium-column-size;
+// Note: depreciating use $col-md-nm
 $col-md: $grid-medium-column-name;
+$col-md-nm: $grid-medium-column-name;
 // Note: depreciating use $lg-sz
 $lg-size: $grid-large-column-size;
 $lg-sz: $grid-large-column-size;
+// Note: depreciating use $col-lg-nm
 $col-lg: $grid-large-column-name;
+$col-lg-nm: $grid-large-column-name;
 // Note: depreciating use $sf-ht
 $sf-height: $sticky-footer-height;
 $sf-ht: $sticky-footer-height;
