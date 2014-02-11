@@ -1,4 +1,4 @@
-## Gridly **v1.1.1-rc.2**
+## Gridly **v1.2.0-rc.1**
 a simple grid framework for sass and css developers.
  
 If this framework is useful for you, you might want to buy me a cup of coffee to keep me fresh.
