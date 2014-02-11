@@ -1,4 +1,4 @@
-## Gridly **v1.2.0-rc.1**
+## Gridly **v1.2.1-rc.1**
 a simple grid framework for sass and css developers.
  
 If this framework is useful for you, you might want to buy me a cup of coffee to keep me fresh.
@@ -146,16 +146,16 @@ Gridly comes with several variables, and variable aliases. The aliases make the 
 |`$grid-column-padding-right`|`$col-pad-r`|15px         |This sets the padding to the right of each column element.                                        |
 |`$grid-column-padding-left` |`$col-pad-l`|15px         |This sets the padding to the left of each column element.                                         |
 |`$grid-column-margin`       |`$col-mar`  |0            |This sets the column margins.                                                                     |
-|`$grid-normal-column-name`  |`$col`      |"col"        |This sets the base column class name.                                                             |
-|`$grid-xsmall-column-size`  |`$xs-size`  |480px        |This sets the first breakpoint size for the smallest column class.                                |
-|`$grid-xsmall-column-name`  |`$col-xs`   |"xsmall"     |This sets the smallest column class name.                                                         |
-|`$grid-small-column-size`   |`$sm-size`  |768px        |This sets the second breakpoint size for the "small" column class.                                |
-|`$grid-small-column-name`   |`$col-sm`   |"small"      |This sets the second smallest column class name.                                                  |
-|`$grid-medium-column-size`  |`$md-size`  |992px        |This sets the third breakpoint size for the "medium" column class.                                |
-|`$grid-medium-column-name`  |`$col-md`   |"medium"     |This sets the third smallest column class name.                                                   |
-|`$grid-large-column-size`   |`$lg-size`  |1200px       |This sets the final breakpoint size for the "large" column class.                                 |
-|`$grid-large-column-name`   |`$col-lg`   |"large"      |This sets the largest column class name.                                                          |
-|`$sticky-footer-height`     |`$sf-height`|150px        |This sets the height of the `.sticky-footer` class.                                               |
+|`$grid-normal-column-name`  |`$col-nm`   |"col"        |This sets the base column class name.                                                             |
+|`$grid-xsmall-column-size`  |`$xs-sz`    |480px        |This sets the first breakpoint size for the smallest column class.                                |
+|`$grid-xsmall-column-name`  |`$col-xs-nm`|"xsmall"     |This sets the smallest column class name.                                                         |
+|`$grid-small-column-size`   |`$sm-sz`    |768px        |This sets the second breakpoint size for the "small" column class.                                |
+|`$grid-small-column-name`   |`$col-sm-nm`|"small"      |This sets the second smallest column class name.                                                  |
+|`$grid-medium-column-size`  |`$md-sz`    |992px        |This sets the third breakpoint size for the "medium" column class.                                |
+|`$grid-medium-column-name`  |`$col-md-nm`|"medium"     |This sets the third smallest column class name.                                                   |
+|`$grid-large-column-size`   |`$lg-sz`    |1200px       |This sets the final breakpoint size for the "large" column class.                                 |
+|`$grid-large-column-name`   |`$col-lg-nm`|"large"      |This sets the largest column class name.                                                          |
+|`$sticky-footer-height`     |`$sf-ht`    |150px        |This sets the height of the `.sticky-footer` class.                                               |
 |`$sticky-footer-top-margin` |`$sf-t-mar` |15px         |This sets the margin-top spacing of the `.sticky-footer` class.                                   |
 
 #### Gridly SASS silent helper classes
